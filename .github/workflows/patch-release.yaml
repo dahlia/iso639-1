@@ -1,0 +1,46 @@
+name: patch-release
+on:
+  schedule:
+  #       ┌───────────── minute (0 - 59)
+  #       │ ┌───────────── hour (0 - 23)
+  #       │ │ ┌───────────── day of the month (1 - 31)
+  #       │ │ │ ┌───────────── month (1 - 12 or JAN-DEC)
+  #       │ │ │ │ ┌───────────── day of the week (0 - 6 or SUN-SAT)
+  - cron: 0 0 * * *
+
+  workflow_dispatch:
+    inputs: {}
+
+jobs:
+  patch-release:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        ssh-key: ${{ secrets.CHECKOUT_SSH_KEY }}
+        fetch-tags: true
+    - uses: allenevans/set-env@v2.0.0
+      with:
+        DENO_DIR: ${{ runner.temp }}/deno
+    - uses: denoland/setup-deno@v1
+      with:
+        deno-version: v1.x
+    - uses: actions/cache@v3
+      with:
+        path: ${{ env.DENO_DIR }}
+        key: ${{ hashFiles('deno.lock') }}
+    - run: |
+        set -evx
+        prev="$(deno task data-date)"
+        deno task update-data
+        if [[ "$prev" != "$(deno task data-date)" ]]; then
+          git config user.name "$GITHUB_ACTOR"
+          git config user.email \
+            "$GITHUB_ACTOR_ID+$GITHUB_ACTOR@users.noreply.github.com"
+          v="$(deno run --allow-read scripts/data-date.ts "-f" "yyyy-MM-dd")"
+          git commit \
+            -m "Update the latest ISO-3166-1 data: $v" \
+            src/data.ts
+          deno task patch-release --no-sign
+        fi
+      shell: bash
