@@ -22,11 +22,11 @@ if (isLanguageCode(code)) {
 }
 ~~~~
 
-For details, see the [API reference].
+For details, see the [API references].
 
 [ISO 639-1]: https://id.loc.gov/vocabulary/iso639-1.html
 [`LanguageCode`]: https://deno.land/x/iso639_1/mod.ts?s=LanguageCode
 [`isLanguageCode`]: https://deno.land/x/iso639_1/mod.ts?s=isLanguageCode
 [`parseLanguageCode`]: https://deno.land/x/iso639_1/mod.ts?s=parseLanguageCode
 [`validateLanguageCode`]: https://deno.land/x/iso639_1/mod.ts?s=validateLanguageCode
-[API reference]: https://deno.land/x/iso639_1/mod.ts
+[API references]: https://deno.land/x/iso639_1/mod.ts
