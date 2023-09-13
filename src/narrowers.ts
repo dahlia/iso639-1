@@ -9,7 +9,7 @@ import { LanguageCode } from "./types.ts";
 
 /**
  * A predicate function to narrow down the {@type string} type to the
- * {@type LanguageCode} type if the given string is a valid language code.
+ * {@link LanguageCode} type if the given string is a valid language code.
  *
  * ```
  * const code: string | null = prompt("Enter a two-letter language code:");
@@ -51,11 +51,11 @@ export function parseLanguageCode(
 
 /**
  * Asserts that the given string is a valid language code.  If the given
- * string is not a valid language code, an {@type InvalidLanguageCodeError}
+ * string is not a valid language code, an {@link InvalidLanguageCodeError}
  * is thrown.
  *
  * @param code The string expected to be a language code.
- * @throws {@type InvalidLanguageCodeError} if the given string is not a
+ * @throws {@link InvalidLanguageCodeError} if the given string is not a
  *         valid language code.
  */
 export function validateLanguageCode(

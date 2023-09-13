@@ -12,7 +12,7 @@ export type LanguageCode = typeof languageCodes[number];
 
 /**
  * The string literal type of all valid authoritative label language codes.
- * This type is a subset of {@type LanguageCode} type.
+ * This type is a subset of {@link LanguageCode} type.
  */
 export type AuthoritativeLabelLanguageCode =
   typeof authoritativeLabelLanguages[number];
