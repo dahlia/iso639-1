@@ -1,5 +1,11 @@
+<!-- deno-fmt-ignore-file -->
+
 Type-safe [ISO 639-1] language code for TypeScript
 ==================================================
+
+[![deno.land/x/iso639_1][Deno module badge]][Deno module]
+[![MIT License][License badge]](./LICENSE)
+
 
 This library provides a set of functions to work with [ISO 639-1] language
 codes, a.k.a. two-letter language codes, in very type-safe way.
@@ -24,6 +30,9 @@ if (isLanguageCode(code)) {
 
 For details, see the [API references].
 
+[Deno module badge]: https://shield.deno.dev/x/iso639_1
+[Deno module]: https://deno.land/x/iso639_1
+[License badge]: https://img.shields.io/github/license/dahlia/iso639-1
 [ISO 639-1]: https://id.loc.gov/vocabulary/iso639-1.html
 [`LanguageCode`]: https://deno.land/x/iso639_1/mod.ts?s=LanguageCode
 [`isLanguageCode`]: https://deno.land/x/iso639_1/mod.ts?s=isLanguageCode
