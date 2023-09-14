@@ -21,10 +21,16 @@ Deno.test("isLanguageCode()", () => {
 
 Deno.test("parseLanguageCode()", () => {
   assertEquals(parseLanguageCode("en"), "en");
+  assertEquals(parseLanguageCode("en", { casing: "onlyUpperCase" }), null);
+  assertEquals(parseLanguageCode("en", { casing: "onlyLowerCase" }), "en");
   assertEquals(parseLanguageCode("EN"), "en");
+  assertEquals(parseLanguageCode("EN", { casing: "onlyLowerCase" }), null);
   assertEquals(parseLanguageCode("fr"), "fr");
   assertEquals(parseLanguageCode("Fr"), "fr");
+  assertEquals(parseLanguageCode("Fr", { casing: "onlyLowerCase" }), null);
+  assertEquals(parseLanguageCode("Fr", { casing: "onlyUpperCase" }), null);
   assertEquals(parseLanguageCode("ZZ"), null);
+  assertEquals(parseLanguageCode(" zh ", { trimSpaces: true }), "zh");
   assertEquals(parseLanguageCode("x"), null);
   assertEquals(parseLanguageCode("foo"), null);
   assertEquals(parseLanguageCode(null), null);
@@ -48,6 +54,11 @@ Deno.test("validateLanguageCode()", () => {
     () => validateLanguageCode("zz"),
     InvalidLanguageCodeError,
     'Invalid language code: "zz"',
+  );
+  assertThrows(
+    () => validateLanguageCode(" zh "),
+    InvalidLanguageCodeError,
+    'Invalid language code: " zh " (which contains spaces)',
   );
   assertThrows(
     () => validateLanguageCode("x"),

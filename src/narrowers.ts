@@ -31,20 +31,50 @@ export function isLanguageCode(
 }
 
 /**
+ * Options to control the parsing behavior of {@link parseLanguageCode}.
+ */
+interface ParseLanguageCodeOptions {
+  /**
+   * If `"onlyLowercase"`, the given string is expected to be a language code
+   * in lowercase letters.
+   *
+   * If `"onlyUpperCase"`, the given string is expected to be a language code
+   * in uppercase letters.
+   *
+   * If `"ignoreCase"`, the case of the given string is ignored and even can
+   * contain a mix of uppercase and lowercase letters.
+   */
+  casing: "onlyLowerCase" | "onlyUpperCase" | "ignoreCase";
+
+  /**
+   * If `true`, the given string is allowed to contain spaces at the beginning
+   * and the end.
+   */
+  trimSpaces: boolean;
+}
+
+/**
  * Parses the given string as a language code.  If the given string is not a
  * valid language code, `null` is returned.
  *
  * @param code The string expected to be a language code.  Case is ignored.
  *             If the given string is `null` or `undefined`, `null` is
  *             returned.
+ * @param options Options to control the parsing behavior.  See also the
+ *                {@link ParseLanguageCodeOptions} type.
  * @returns The language code if the given string is a valid language code,
  *          `null` otherwise.
  */
 export function parseLanguageCode(
   code: string | null | undefined,
+  options?: Partial<ParseLanguageCodeOptions>,
 ): LanguageCode | null {
   if (code == null) return null;
-  code = code.toLowerCase();
+  if (options?.trimSpaces) code = code.trim();
+  if (options?.casing === "onlyUpperCase" && code.toUpperCase() !== code) {
+    return null;
+  }
+  if (options?.casing !== "onlyLowerCase") code = code.toLowerCase();
   if (code.length != 2) return null;
   const idx = languageCodes.indexOf(code as unknown as LanguageCode);
   if (idx === -1) return null;
@@ -71,7 +101,9 @@ export function validateLanguageCode(
     throw new InvalidLanguageCodeError(
       code,
       `Invalid language code: ${JSON.stringify(code)}` +
-        (code.length != 2
+        (code.trim() != code
+          ? " (which contains spaces)"
+          : code.length != 2
           ? " (which is not a two-letter code)"
           : code.toLowerCase() != code
           ? " (which contains uppercase letters)"
