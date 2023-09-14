@@ -1,6 +1,7 @@
 /**
  * This module contains several functions to narrow down the {@type string}
  * type to the {@type LanguageCode} type.
+ *
  * @license MIT
  */
 import { languageCodes } from "./data.ts";
@@ -25,7 +26,7 @@ import { LanguageCode } from "./types.ts";
 export function isLanguageCode(
   code: string | null | undefined,
 ): code is LanguageCode {
-  if (code == null) return false;
+  if (code == null || code.length != 2) return false;
   return languageCodes.includes(code as unknown as LanguageCode);
 }
 
@@ -44,6 +45,7 @@ export function parseLanguageCode(
 ): LanguageCode | null {
   if (code == null) return null;
   code = code.toLowerCase();
+  if (code.length != 2) return null;
   const idx = languageCodes.indexOf(code as unknown as LanguageCode);
   if (idx === -1) return null;
   return languageCodes[idx];
@@ -68,7 +70,12 @@ export function validateLanguageCode(
   } else if (!isLanguageCode(code)) {
     throw new InvalidLanguageCodeError(
       code,
-      `Invalid language code: ${code}`,
+      `Invalid language code: ${JSON.stringify(code)}` +
+        (code.length != 2
+          ? " (which is not a two-letter code)"
+          : code.toLowerCase() != code
+          ? " (which contains uppercase letters)"
+          : ""),
     );
   }
 }
