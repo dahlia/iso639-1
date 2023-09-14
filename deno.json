@@ -1,8 +1,19 @@
 {
+  "fmt": {
+    "exclude": [
+      ".github/",
+      "*.md"
+    ],
+    "lineWidth": 80
+  },
   "imports": {
     "std/": "https://deno.land/std@0.201.0/"
   },
   "tasks": {
+    "test": "deno test --check --doc",
+    "prepare-coverage": "deno task test --coverage=.cov-profile && deno coverage --exclude=tests/ .cov-profile",
+    "coverage": "deno task prepare-coverage && rm -r .cov-profile",
+    "lcov": "deno task prepare-coverage --lcov --output=.cov-profile/cov.lcov",
     "data-date": "deno run --allow-read scripts/data-date.ts",
     "update-data": "deno run --allow-net=id.loc.gov --allow-read=src/data.ts --allow-write=src/data.ts scripts/update-data.ts src/data.ts && deno check --all src/data.ts && deno fmt src/data.ts",
     "patch-release": "deno run --allow-env --allow-read --allow-run scripts/patch-release.ts"

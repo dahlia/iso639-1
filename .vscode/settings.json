@@ -1,6 +1,10 @@
 {
   "deno.enable": true,
   "deno.lint": true,
+  "deno.testing.args": [
+    "--check",
+    "--doc"
+  ],
   "files.eol": "\n",
   "files.insertFinalNewline": true,
   "files.trimFinalNewlines": true,
@@ -29,7 +33,10 @@
   },
   "cSpell.words": [
     "anglais",
+    "deno",
+    "denoland",
     "Französisch",
+    "lcov",
     "narrowers"
   ]
 }

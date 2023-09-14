@@ -19,6 +19,7 @@ jobs:
       with:
         ssh-key: ${{ secrets.CHECKOUT_SSH_KEY }}
         fetch-tags: true
+    # cSpell: ignore allenevans
     - uses: allenevans/set-env@v2.0.0
       with:
         DENO_DIR: ${{ runner.temp }}/deno

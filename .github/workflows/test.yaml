@@ -1,0 +1,29 @@
+name: test
+on:
+  push:
+    branches: "*"
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    # cSpell: ignore allenevans
+    - uses: allenevans/set-env@v2.0.0
+      with:
+        DENO_DIR: ${{ runner.temp }}/deno
+    - uses: denoland/setup-deno@v1
+      with:
+        deno-version: v1.x
+    - uses: actions/cache@v3
+      with:
+        path: ${{ env.DENO_DIR }}
+        key: ${{ hashFiles('deno.lock') }}
+    - run: deno task lcov
+    - uses: codecov/codecov-action@v3
+      with:
+        files: .cov-profile/cov.lcov
+      env:
+        CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+    - run: deno lint
+    - run: deno fmt --check
