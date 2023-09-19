@@ -100,7 +100,10 @@ async function updateDataFile(
     .replace(
       /(\/\/\s+CODES\s+\/\/\r?\n)([^/]|.[^/])+(\/\/\s+END\s+CODES\s+\/\/\r?\n)/s,
       `// CODES //\n${
-        languageCodes.map((c) => `${JSON.stringify(c)}`).sort().join(",\n")
+        languageCodes.map((c) =>
+          `${JSON.stringify(c)},` +
+          (authoritativeLabels[c]?.en ? ` // ${authoritativeLabels[c].en}` : "")
+        ).sort().join("\n")
       }\n// END CODES //\n`,
     )
     .replace(
