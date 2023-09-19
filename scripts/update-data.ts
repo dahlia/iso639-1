@@ -117,7 +117,15 @@ async function updateDataFile(
       /(\/\/\s+LABELS\s+\/\/\r?\n)([^/]|.[^/])+(\/\/\s+END\s+LABELS\s+\/\/\r?\n)/s,
       `// LABELS //\n${
         Object.entries(authoritativeLabels).map(([lang, labels]) =>
-          `${JSON.stringify(lang)}: ${JSON.stringify(labels)}`
+          `${JSON.stringify(lang)}: {
+            ${
+            Object.entries(labels).map(([labelLang, labelSet]) =>
+              `${JSON.stringify(labelLang)}: ${
+                JSON.stringify(labelSet.split(/\s+\|\s+/))
+              }`
+            ).sort().join(", ")
+          }
+          }`
         ).sort().join(",\n")
       }\n// END LABELS //\n`,
     );
