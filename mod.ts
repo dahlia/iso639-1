@@ -4,13 +4,13 @@
  *
  * Although it does not introduce any new runtime types, it provides
  * the {@link LanguageCode} type, which is a narrowed-down version of the
- * {@type string} type that contains only valid two-letter language codes
+ * string type that contains only valid two-letter language codes
  * defined in ISO 639-1.
  *
- * There are three ways to narrow down the {@type string} type to the
- * {@type LanguageCode} type: {@link isLanguageCode}, {@link parseLanguageCode},
+ * There are three ways to narrow down the string type to the
+ * {@link LanguageCode} type: {@link isLanguageCode}, {@link parseLanguageCode},
  * and {@link validateLanguageCode}.  The following example shows how to narrow
- * down a string value to the {@type LanguageCode} type:
+ * down a string value to the {@link LanguageCode} type:
  *
  * ```
  * import {

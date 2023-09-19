@@ -1,6 +1,6 @@
 /**
- * This module contains several functions to narrow down the {@type string}
- * type to the {@type LanguageCode} type.
+ * This module contains several functions to narrow down the string
+ * type to the {@link LanguageCode} type.
  *
  * @license MIT
  */
@@ -9,7 +9,7 @@ import { InvalidLanguageCodeError } from "./errors.ts";
 import { LanguageCode } from "./types.ts";
 
 /**
- * A predicate function to narrow down the {@type string} type to the
+ * A predicate function to narrow down the string type to the
  * {@link LanguageCode} type if the given string is a valid language code.
  *
  * ```
