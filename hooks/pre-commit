@@ -1,0 +1,7 @@
+#!/bin/bash
+set -e
+
+deno task test --fail-fast --quiet
+deno check mod.ts tests/*.ts
+deno lint
+deno fmt --check

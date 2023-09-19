@@ -25,5 +25,6 @@ jobs:
         files: .cov-profile/cov.lcov
       env:
         CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+    - run: deno check mod.ts tests/*.ts
     - run: deno lint
     - run: deno fmt --check
