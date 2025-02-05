@@ -3,6 +3,7 @@
 Type-safe [ISO 639-1] language code for TypeScript
 ==================================================
 
+[![JSR][JSR badge]][JSR]
 [![deno.land/x/iso639_1][Deno module badge]][Deno module]
 [![MIT License][License badge]](./LICENSE)
 [![GitHub Actions][GitHub Actions badge]][GitHub Actions]
@@ -22,10 +23,7 @@ and [`validateLanguageCode`].  The following example shows how to narrow
 down a string value to the [`LanguageCode`] type:
 
 ~~~~ typescript
-import {
-  authoritativeLabels,
-  isLanguageCode,
-} from "https://deno.land/x/iso639_1/mod.ts";
+import { authoritativeLabels, isLanguageCode } from "@hongminhee/iso639-";
 
 const code: string | null = prompt("Enter a two-letter language code:");
 if (isLanguageCode(code)) {
@@ -36,8 +34,10 @@ if (isLanguageCode(code)) {
 }
 ~~~~
 
-For details, see the [API references].
+For details, see the [API references][JSR].
 
+[JSR badge]: https://jsr.io/badges/@hongminhee/iso639-1
+[JSR]: https://jsr.io/@hongminhee/iso639-1
 [Deno module badge]: https://shield.deno.dev/x/iso639_1
 [Deno module]: https://deno.land/x/iso639_1
 [License badge]: https://img.shields.io/github/license/dahlia/iso639-1
@@ -46,8 +46,7 @@ For details, see the [API references].
 [Codecov badge]: https://codecov.io/gh/dahlia/iso639-1/graph/badge.svg
 [Codecov]: https://codecov.io/gh/dahlia/iso639-1
 [ISO 639-1]: https://id.loc.gov/vocabulary/iso639-1.html
-[`LanguageCode`]: https://deno.land/x/iso639_1/mod.ts?s=LanguageCode
-[`isLanguageCode`]: https://deno.land/x/iso639_1/mod.ts?s=isLanguageCode
-[`parseLanguageCode`]: https://deno.land/x/iso639_1/mod.ts?s=parseLanguageCode
-[`validateLanguageCode`]: https://deno.land/x/iso639_1/mod.ts?s=validateLanguageCode
-[API references]: https://deno.land/x/iso639_1/mod.ts
+[`LanguageCode`]: https://jsr.io/@hongminhee/iso639-1/doc/~/LanguageCode
+[`isLanguageCode`]: https://jsr.io/@hongminhee/iso639-1/doc/~/isLanguageCode
+[`parseLanguageCode`]: https://jsr.io/@hongminhee/iso639-1/doc/~/parseLanguageCode
+[`validateLanguageCode`]: https://jsr.io/@hongminhee/iso639-1/doc/~/validateLanguageCode

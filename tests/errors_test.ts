@@ -1,4 +1,4 @@
-import { assertEquals } from "std/assert/assert_equals.ts";
+import { assertEquals } from "@std/assert/equals";
 import { InvalidLanguageCodeError } from "../src/errors.ts";
 
 Deno.test("new InvalidLanguageCodeError()", () => {

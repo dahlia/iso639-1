@@ -6,7 +6,7 @@
  */
 import { languageCodes } from "./data.ts";
 import { InvalidLanguageCodeError } from "./errors.ts";
-import { LanguageCode } from "./types.ts";
+import type { LanguageCode } from "./types.ts";
 
 /**
  * A predicate function to narrow down the string type to the

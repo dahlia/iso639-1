@@ -1,9 +1,4 @@
-import {
-  assert,
-  assertEquals,
-  assertFalse,
-  assertThrows,
-} from "std/assert/mod.ts";
+import { assert, assertEquals, assertFalse, assertThrows } from "@std/assert";
 import { isLanguageCode, parseLanguageCode } from "../src/narrowers.ts";
 import { InvalidLanguageCodeError, validateLanguageCode } from "../mod.ts";
 

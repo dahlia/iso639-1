@@ -1,4 +1,4 @@
-import { authoritativeLabelLanguages, languageCodes } from "./data.ts";
+import type { authoritativeLabelLanguages, languageCodes } from "./data.ts";
 
 /**
  * The string literal type of all valid language codes.  This type contains

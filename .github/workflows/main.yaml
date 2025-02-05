@@ -1,7 +1,8 @@
-name: test
+name: main
 on:
   push:
     branches: "*"
+    tags: "*"
 
 jobs:
   test:
@@ -12,9 +13,9 @@ jobs:
     - uses: allenevans/set-env@v2.0.0
       with:
         DENO_DIR: ${{ runner.temp }}/deno
-    - uses: denoland/setup-deno@v1
+    - uses: denoland/setup-deno@v2
       with:
-        deno-version: v1.x
+        deno-version: v2.x
     - uses: actions/cache@v3
       with:
         path: ${{ env.DENO_DIR }}
@@ -28,3 +29,17 @@ jobs:
     - run: deno check examples/*.ts mod.ts tests/*.ts
     - run: deno lint
     - run: deno fmt --check
+
+  publish:
+    if: github.event_name == 'push' && github.ref_type == 'tag'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    needs: [test]
+    steps:
+    - uses: actions/checkout@v4
+    - uses: denoland/setup-deno@v2
+      with:
+        deno-version: v2.x
+    - run: deno publish

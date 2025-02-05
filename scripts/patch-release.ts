@@ -2,12 +2,12 @@ import { parse } from "https://deno.land/std@0.201.0/flags/mod.ts";
 import {
   format as formatSemVer,
   parse as parseSemVer,
-  SemVer,
+  type SemVer,
 } from "https://deno.land/std@0.201.0/semver/mod.ts";
 import {
   build$,
   CommandBuilder,
-  CommandResult,
+  type CommandResult,
   PathRef,
 } from "https://deno.land/x/dax@0.35.0/mod.ts";
 import { updatedDate } from "../mod.ts";

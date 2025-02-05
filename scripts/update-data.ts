@@ -7,7 +7,7 @@
  *
  * @license MIT
  */
-import { Feed, parseFeed } from "https://deno.land/x/rss@1.0.0/mod.ts";
+import { type Feed, parseFeed } from "https://deno.land/x/rss@1.0.0/mod.ts";
 import { updatedDate as existingUpdatedDate } from "../mod.ts";
 
 const baseUrl = new URL("http://id.loc.gov/vocabulary/iso639-1/");
