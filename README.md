@@ -23,7 +23,7 @@ and [`validateLanguageCode`].  The following example shows how to narrow
 down a string value to the [`LanguageCode`] type:
 
 ~~~~ typescript
-import { authoritativeLabels, isLanguageCode } from "@hongminhee/iso639-";
+import { authoritativeLabels, isLanguageCode } from "@hongminhee/iso639-1";
 
 const code: string | null = prompt("Enter a two-letter language code:");
 if (isLanguageCode(code)) {
